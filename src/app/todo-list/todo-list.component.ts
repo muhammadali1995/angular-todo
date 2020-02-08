@@ -8,7 +8,6 @@ import {ItemModel} from './item.model';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  searchInput: string = '';
   activeTab = 'all';
   public globalItems: ItemModel [] = [];
   public items = this.globalItems;
@@ -29,10 +28,10 @@ export class TodoListComponent implements OnInit {
     this.activeTab = value;
     switch (value) {
       case 'active':
-        this.items = this.globalItems.filter(item => item.status == this.todoListService.ACTIVE);
+        this.items = this.globalItems.filter(item => item.status === this.todoListService.ACTIVE);
         break;
       case 'completed':
-        this.items = this.globalItems.filter(item => item.status == this.todoListService.COMPLETED);
+        this.items = this.globalItems.filter(item => item.status === this.todoListService.COMPLETED);
         break;
       default:
         this.items = this.globalItems;

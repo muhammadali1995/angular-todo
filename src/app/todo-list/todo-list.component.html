@@ -1,0 +1,42 @@
+<h2 class="text-center">Tasks</h2>
+<div class="input-group mb-2">
+  <input type="text" placeholder="New task" class="form-control" #input>
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" type="button"
+            (click)="add(input.value); input.value=''">Add
+    </button>
+  </div>
+</div>
+<div id="todo-tab" class="text-center active bg-primary alert">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-secondary" (click)="filter('all')"
+            [ngClass]="{'active': activeTab==='all'}">All
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="filter('active')"
+            [ngClass]="{'active': activeTab==='active'}">Active
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="filter('completed')"
+            [ngClass]="{'active': activeTab==='completed'}">Completed
+    </button>
+  </div>
+</div>
+<ul class="list-group" style="max-height: 300px; overflow: auto;">
+  <li class="list-group-item" *ngIf="globalItems.length==0">
+    <h4 class="alert-heading text-danger"> You do not have any tasks, please add!</h4>
+  </li>
+  <li class="list-group-item" *ngIf="items.length>0">
+    <div class="input-group mb-3" *ngFor="let item of items">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" (ngModelChange)="update(item)" [(ngModel)]="item.status"
+                 aria-label="Checkbox for following text input">
+        </div>
+      </div>
+      <input type="text" (ngModelChange)="update(item)" [(ngModel)]="item.name" class="form-control"
+             aria-label="Text input with checkbox">
+      <div class="input-group-append">
+        <button class="btn btn-danger" (click)="delete(item)" id="button-addon2">✕</button>
+      </div>
+    </div>
+  </li>
+</ul>

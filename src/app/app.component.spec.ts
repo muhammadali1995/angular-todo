@@ -1,12 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {TodoListComponent} from './todo-list/todo-list.component';
+import {FormsModule} from '@angular/forms';
+import {TodoListService} from './todo-list/todo-list.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
+      imports: [
+        FormsModule
       ],
+      declarations: [
+        AppComponent,
+        TodoListComponent
+      ],
+      providers: [
+        TodoListService
+      ]
     }).compileComponents();
   }));
 
@@ -19,13 +29,6 @@ describe('AppComponent', () => {
   it(`should have as title 'angular-todo'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('angular-todo');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-todo app is running!');
+    expect(app.title).toEqual('To Do');
   });
 });

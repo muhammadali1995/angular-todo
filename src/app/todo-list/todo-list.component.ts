@@ -8,7 +8,7 @@ import {ItemModel} from './item.model';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-
+  searchInput: string = '';
   activeTab = 'all';
   public globalItems: ItemModel [] = [];
   public items = this.globalItems;
@@ -49,7 +49,7 @@ export class TodoListComponent implements OnInit {
     this.todoListService.update(item);
   }
 
-  delete(item: ItemModel){
+  delete(item: ItemModel) {
     if (this.activeTab != 'all') {
       let index = this.items.indexOf(item);
       this.items.splice(index, 1);
@@ -58,6 +58,11 @@ export class TodoListComponent implements OnInit {
   }
 
   add(name: string) {
+    if (name.trim().length === 0) {
+      alert('please types something');
+      return;
+    }
+    ;
     let item = new ItemModel(
       Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
       name,

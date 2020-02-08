@@ -2,7 +2,9 @@
 <div class="input-group mb-2">
   <input type="text" placeholder="New task" class="form-control" #input>
   <div class="input-group-append">
-    <button class="btn btn-outline-primary" type="button" (click)="add(input.value); input.value=''">Add</button>
+    <button class="btn btn-outline-primary" type="button"
+            (click)="add(input.value); input.value=''">Add
+    </button>
   </div>
 </div>
 <div id="todo-tab" class="text-center active bg-primary alert">
@@ -30,9 +32,10 @@
                  aria-label="Checkbox for following text input">
         </div>
       </div>
-      <input type="text" (ngModelChange)="update(item)" [(ngModel)]="item.name" class="form-control" aria-label="Text input with checkbox">
+      <input type="text" (ngModelChange)="update(item)" [(ngModel)]="item.name" class="form-control"
+             aria-label="Text input with checkbox">
       <div class="input-group-append">
-        <button class="btn btn-danger"  (click)="delete(item)" id="button-addon2">✕</button>
+        <button class="btn btn-danger" (click)="delete(item)" id="button-addon2">✕</button>
       </div>
     </div>
   </li>

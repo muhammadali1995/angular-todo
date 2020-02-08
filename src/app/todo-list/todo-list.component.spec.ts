@@ -32,7 +32,11 @@ describe('TodoListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have 0 tasks ', function() {
+  it('should have 0 tasks ', () => {
     expect(component.globalItems.length).toEqual(0);
+  });
+
+  it('should getAll() return array of item', () => {
+
   });
 });

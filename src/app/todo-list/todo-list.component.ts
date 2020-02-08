@@ -29,10 +29,10 @@ export class TodoListComponent implements OnInit {
     this.activeTab = value;
     switch (value) {
       case 'active':
-        this.items = this.globalItems.filter(item => item.status == this.todoListService.active);
+        this.items = this.globalItems.filter(item => item.status == this.todoListService.ACTIVE);
         break;
       case 'completed':
-        this.items = this.globalItems.filter(item => item.status == this.todoListService.completed);
+        this.items = this.globalItems.filter(item => item.status == this.todoListService.COMPLETED);
         break;
       default:
         this.items = this.globalItems;
@@ -42,7 +42,7 @@ export class TodoListComponent implements OnInit {
   }
 
   update(item: ItemModel) {
-    let index = this.items.indexOf(item);
+    const index = this.items.indexOf(item);
     if ((this.activeTab === 'active' && !item.status) || (this.activeTab === 'completed' && item.status)) {
       this.items.splice(index, 1);
     }
@@ -50,8 +50,8 @@ export class TodoListComponent implements OnInit {
   }
 
   delete(item: ItemModel) {
-    if (this.activeTab != 'all') {
-      let index = this.items.indexOf(item);
+    if (this.activeTab !== 'all') {
+      const index = this.items.indexOf(item);
       this.items.splice(index, 1);
     }
     this.todoListService.delete(item);
@@ -59,20 +59,19 @@ export class TodoListComponent implements OnInit {
 
   add(name: string) {
     if (name.trim().length === 0) {
-      alert('please types something'); return;
-    };
-    let item = new ItemModel(
+      alert('please types something');
+      return;
+    }
+    const item = new ItemModel(
       Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
       name,
-      this.todoListService.active
+      this.todoListService.ACTIVE
     );
 
     if (this.activeTab === 'active') {
       this.items.push(item);
     }
-
     this.todoListService.add(item);
-
   }
 }
 

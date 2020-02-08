@@ -57,10 +57,7 @@ export class TodoListComponent implements OnInit {
   }
 
   add(name: string) {
-    if (name.trim().length === 0) {
-      alert('please types something');
-      return;
-    }
+    if (name.trim().length === 0) {alert('please types something'); return; }
     const item = new ItemModel(
       Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
       name,

@@ -37,6 +37,5 @@ describe('TodoListComponent', () => {
   });
 
   it('should getAll() return array of item', () => {
-
   });
 });

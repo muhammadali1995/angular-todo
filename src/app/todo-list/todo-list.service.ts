@@ -19,6 +19,11 @@ export class TodoListService {
     this.items.push(item);
   }
 
+  delete(item){
+    let index = this.items.indexOf(item);
+    this.items.splice(index, 1);
+  }
+
   update(item: ItemModel) {
     let itemIndex = this.items.indexOf(item);
     if (itemIndex > -1) {

@@ -41,7 +41,7 @@ export class TodoListComponent implements OnInit {
 
   }
 
-  update(item) {
+  update(item: ItemModel) {
     let index = this.items.indexOf(item);
     if ((this.activeTab === 'active' && !item.status) || (this.activeTab === 'completed' && item.status)) {
       this.items.splice(index, 1);
@@ -49,7 +49,15 @@ export class TodoListComponent implements OnInit {
     this.todoListService.update(item);
   }
 
-  add(name) {
+  delete(item: ItemModel){
+    if (this.activeTab != 'all') {
+      let index = this.items.indexOf(item);
+      this.items.splice(index, 1);
+    }
+    this.todoListService.delete(item);
+  }
+
+  add(name: string) {
     let item = new ItemModel(
       Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
       name,

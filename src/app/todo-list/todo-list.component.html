@@ -26,10 +26,14 @@
     <div class="input-group mb-3" *ngFor="let item of items">
       <div class="input-group-prepend">
         <div class="input-group-text">
-          <input type="checkbox" (ngModelChange)="update(item)" [(ngModel)]="item.status" aria-label="Checkbox for following text input">
+          <input type="checkbox" (ngModelChange)="update(item)" [(ngModel)]="item.status"
+                 aria-label="Checkbox for following text input">
         </div>
       </div>
-      <input type="text" [(ngModel)]="item.name" class="form-control" aria-label="Text input with checkbox">
+      <input type="text" (ngModelChange)="update(item)" [(ngModel)]="item.name" class="form-control" aria-label="Text input with checkbox">
+      <div class="input-group-append">
+        <button class="btn btn-danger"  (click)="delete(item)" id="button-addon2">✕</button>
+      </div>
     </div>
   </li>
 </ul>
